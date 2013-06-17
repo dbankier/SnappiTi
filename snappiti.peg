@@ -36,7 +36,26 @@ object =
 
 multiplied_object = 
   object:object "*" i:integer
-    { var ret = []; for (var a = 0; a < i; a++) { ret.push(object[0]) };  return ret}
+    { var ret = [];
+      for (var a = 0; a < i; a++) {
+        var current = {object: object[0].object};
+        if (object[0].id) { 
+          current.id = object[0].id;
+        }
+        if (object[0].classes) {
+          current.classes = object[0].classes;
+        }
+        var id = current.id 
+        if (id !== undefined && id.indexOf("$") > -1 ) {
+          current.id = id.replace(/\$/, (a+1));
+        }
+        if (current.classes) {
+          current.classes = current.classes.map(function(x) {return x.replace(/\$/, (a+1));});
+        }
+        ret.push(current) 
+      };  
+      return ret
+    }
   / object 
 
 
@@ -47,7 +66,7 @@ added_object =
 
 parent_object = 
   parent:added_object ">" child:parent_object
-    {parent[parent.length -1].children=child; return parent}
+    {return parent.map(function(p) { p.children=child; return p});}
   / added_object
 
 objects =
