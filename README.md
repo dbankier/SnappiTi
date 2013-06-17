@@ -205,6 +205,7 @@ module.exports = MainWindow
 Hopefully this list will continue to be updated
 
  * **VIM** - [SnappiTi.vim](http://github.com/dbankier/SnappiTi.vim)
+ * **Sublime Text 2 *** - [SnappiTi.sublime](http://github.com/dbankier/SnappiTi.sublime)
 
 
 
