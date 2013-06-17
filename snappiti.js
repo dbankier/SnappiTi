@@ -44,7 +44,7 @@ function buildObject(o, buffer, parent) {
   if (o.id) {
     buffer.push(indent  + "var " + o.id + " = " + start );
     if (o.classes && o.classes.length > 0) {
-      buffer.push("_.defaults(styles['#"+o.id+"']," + o.classes.map(function(c) { return "styles['."+c+"']";}).join(","));
+      buffer.push("_.defaults(styles['#"+o.id+"']," + o.classes.map(function(c) { return "styles['."+c+"']";}).join(",") + ")");
     } else {
       buffer.push("styles['#"+o.id+"']");
     }
@@ -93,10 +93,10 @@ exports.generate = function(string, hideStyle) {
     buffer.push(styles.sort().map(function(x) { 
       return indent +  "'" + x + "': {\n"+ indent + indent + "\n" + indent + "}";}).join(",\n"));
     buffer.push("\n};\n");
+    buffer.push("\n" +  "/******      VIEWS     *****/\n\n");
   }
 
   objects.forEach(function(o) {
-    buffer.push("\n" +  "/******      VIEWS     *****/\n\n");
     buildObject(o, buffer);
   });
 
