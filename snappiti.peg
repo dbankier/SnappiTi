@@ -1,0 +1,58 @@
+start =
+  objects
+
+word =
+  letters: [a-zA-Z]+
+  {return letters.join("");}
+
+extendedword=
+  head:[a-zA-Z] tail:[a-zA-Z0-9_$]*
+  {return head + tail.join("");}
+
+integer "integer"
+  = digits:[0-9]+ { return parseInt(digits.join(""), 10); }
+
+id = 
+  "#" word:extendedword 
+  {return word;}
+
+class =
+  "." word:extendedword
+  {return word}
+
+plussed_object = 
+  "+" object:parent_object
+    {return object}
+  / parent_object
+
+
+object =
+  word:word classes1:class* id:id classes2:class*
+    {return [{object: word, id: id, classes:classes1.concat(classes2)}]}
+  / word:word classes1:class+
+    {return [{object: word, classes:classes1}]}
+  / word:word
+    {return [{object: word}]}
+
+multiplied_object = 
+  object:object "*" i:integer
+    { var ret = []; for (var a = 0; a < i; a++) { ret.push(object[0]) };  return ret}
+  / object 
+
+
+added_object = 
+  first:multiplied_object rest:plussed_object
+    {return first.concat([].concat.apply([],rest))}
+  / multiplied_object
+
+parent_object = 
+  parent:added_object ">" child:parent_object
+    {parent[parent.length -1].children=child; return parent}
+  / added_object
+
+objects =
+  first:parent_object
+    {return first}
+
+  
+
