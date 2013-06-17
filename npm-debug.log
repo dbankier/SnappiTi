@@ -1,0 +1,114 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish', '.' ]
+2 info using npm@1.1.71
+3 info using node@v0.8.22
+4 verbose publish [ '.' ]
+5 verbose read json /Users/david/node-projects/SnappiTi/package.json
+6 verbose cache add [ '.', null ]
+7 silly cache add name=undefined spec="." args=[".",null]
+8 verbose parsed url { pathname: '.', path: '.', href: '.' }
+9 silly lockFile 3a52ce78- .
+10 verbose lock . /Users/david/.npm/3a52ce78-.lock
+11 verbose read json package.json
+12 verbose tar pack [ '/var/folders/81/vlgfxl3n50532bl_d37rzf0c0000gn/T/npm-505/1371470179736-0.9944280728232116/tmp.tgz',
+12 verbose tar pack   '.' ]
+13 verbose tarball /var/folders/81/vlgfxl3n50532bl_d37rzf0c0000gn/T/npm-505/1371470179736-0.9944280728232116/tmp.tgz
+14 verbose folder .
+15 info prepublish SnappiTi@0.0.1
+16 silly lockFile d6d97aee-79736-0-9944280728232116-tmp-tgz /var/folders/81/vlgfxl3n50532bl_d37rzf0c0000gn/T/npm-505/1371470179736-0.9944280728232116/tmp.tgz
+17 verbose lock /var/folders/81/vlgfxl3n50532bl_d37rzf0c0000gn/T/npm-505/1371470179736-0.9944280728232116/tmp.tgz /Users/david/.npm/d6d97aee-79736-0-9944280728232116-tmp-tgz.lock
+18 silly lockFile d6d97aee-79736-0-9944280728232116-tmp-tgz /var/folders/81/vlgfxl3n50532bl_d37rzf0c0000gn/T/npm-505/1371470179736-0.9944280728232116/tmp.tgz
+19 verbose tar unpack /var/folders/81/vlgfxl3n50532bl_d37rzf0c0000gn/T/npm-505/1371470179736-0.9944280728232116/tmp.tgz
+20 silly lockFile 3d4a0896-79736-0-9944280728232116-package /var/folders/81/vlgfxl3n50532bl_d37rzf0c0000gn/T/npm-505/1371470179736-0.9944280728232116/package
+21 verbose lock /var/folders/81/vlgfxl3n50532bl_d37rzf0c0000gn/T/npm-505/1371470179736-0.9944280728232116/package /Users/david/.npm/3d4a0896-79736-0-9944280728232116-package.lock
+22 silly gunzTarPerm modes [ '755', '644' ]
+23 silly gunzTarPerm extractEntry package.json
+24 silly gunzTarPerm extractEntry .npmignore
+25 silly gunzTarPerm extractEntry README.md
+26 silly gunzTarPerm extractEntry snappiti.js
+27 silly gunzTarPerm extractEntry parser.js
+28 silly gunzTarPerm extractEntry bin/snappiti
+29 silly gunzTarPerm extractEntry parser.pegjs
+30 silly gunzTarPerm extractEntry Button
+31 silly gunzTarPerm extractEntry snippets.json
+32 silly gunzTarPerm extractEntry test/test.js
+33 verbose read json /var/folders/81/vlgfxl3n50532bl_d37rzf0c0000gn/T/npm-505/1371470179736-0.9944280728232116/package/package.json
+34 silly lockFile 3d4a0896-79736-0-9944280728232116-package /var/folders/81/vlgfxl3n50532bl_d37rzf0c0000gn/T/npm-505/1371470179736-0.9944280728232116/package
+35 verbose from cache /var/folders/81/vlgfxl3n50532bl_d37rzf0c0000gn/T/npm-505/1371470179736-0.9944280728232116/package/package.json
+36 verbose tar pack [ '/Users/david/.npm/SnappiTi/0.0.1/package.tgz',
+36 verbose tar pack   '/var/folders/81/vlgfxl3n50532bl_d37rzf0c0000gn/T/npm-505/1371470179736-0.9944280728232116/package' ]
+37 verbose tarball /Users/david/.npm/SnappiTi/0.0.1/package.tgz
+38 verbose folder /var/folders/81/vlgfxl3n50532bl_d37rzf0c0000gn/T/npm-505/1371470179736-0.9944280728232116/package
+39 silly lockFile 17f20472-d-npm-SnappiTi-0-0-1-package-tgz /Users/david/.npm/SnappiTi/0.0.1/package.tgz
+40 verbose lock /Users/david/.npm/SnappiTi/0.0.1/package.tgz /Users/david/.npm/17f20472-d-npm-SnappiTi-0-0-1-package-tgz.lock
+41 silly lockFile 17f20472-d-npm-SnappiTi-0-0-1-package-tgz /Users/david/.npm/SnappiTi/0.0.1/package.tgz
+42 silly lockFile c067ee7e-david-npm-SnappiTi-0-0-1-package /Users/david/.npm/SnappiTi/0.0.1/package
+43 verbose lock /Users/david/.npm/SnappiTi/0.0.1/package /Users/david/.npm/c067ee7e-david-npm-SnappiTi-0-0-1-package.lock
+44 silly lockFile c067ee7e-david-npm-SnappiTi-0-0-1-package /Users/david/.npm/SnappiTi/0.0.1/package
+45 verbose tar unpack /Users/david/.npm/SnappiTi/0.0.1/package.tgz
+46 silly lockFile c067ee7e-david-npm-SnappiTi-0-0-1-package /Users/david/.npm/SnappiTi/0.0.1/package
+47 verbose lock /Users/david/.npm/SnappiTi/0.0.1/package /Users/david/.npm/c067ee7e-david-npm-SnappiTi-0-0-1-package.lock
+48 silly gunzTarPerm modes [ '755', '644' ]
+49 silly gunzTarPerm extractEntry package.json
+50 silly gunzTarPerm extractEntry .npmignore
+51 silly gunzTarPerm extractEntry README.md
+52 silly gunzTarPerm extractEntry parser.js
+53 silly gunzTarPerm extractEntry snappiti.js
+54 silly gunzTarPerm extractEntry bin/snappiti
+55 silly gunzTarPerm extractEntry Button
+56 silly gunzTarPerm extractEntry parser.pegjs
+57 silly gunzTarPerm extractEntry snippets.json
+58 silly gunzTarPerm extractEntry test/test.js
+59 verbose read json /Users/david/.npm/SnappiTi/0.0.1/package/package.json
+60 silly lockFile c067ee7e-david-npm-SnappiTi-0-0-1-package /Users/david/.npm/SnappiTi/0.0.1/package
+61 silly shasum updated bytes 7431
+62 info shasum ca17d1a5b92ef9f36d4e970390827e12dc23c4e3
+62 info shasum /Users/david/.npm/SnappiTi/0.0.1/package.tgz
+63 verbose from cache /Users/david/.npm/SnappiTi/0.0.1/package/package.json
+64 verbose chmod /Users/david/.npm/SnappiTi/0.0.1/package.tgz 644
+65 verbose chown /Users/david/.npm/SnappiTi/0.0.1/package.tgz [ 501, 20 ]
+66 silly lockFile 3a52ce78- .
+67 silly publish { name: 'SnappiTi',
+67 silly publish   version: '0.0.1',
+67 silly publish   description: 'Emmet/Zen Style Coding for Titanium',
+67 silly publish   main: 'index.js',
+67 silly publish   dependencies: { commander: '~1.2.0', pkginfo: '~0.3.0' },
+67 silly publish   devDependencies: {},
+67 silly publish   scripts: { test: 'mocha' },
+67 silly publish   repository: '',
+67 silly publish   keywords: [ 'Appcelerator', 'Titanium', 'Zen', 'Coding' ],
+67 silly publish   bin: { SnappiTi: 'bin/snappiti' },
+67 silly publish   author: { name: 'David Bankier' },
+67 silly publish   license: 'MIT',
+67 silly publish   readme: '# SnappiTi\n\nA emmet/zencoding style code generator for Titanium\n\n# Install\n\n```\n$ [sudo] npm install -g snappiti\n```\n\n# Usage\n\n```\n$ snappiti compile [code]\n```\n\nThere is an optional flag to hide style option generation. E.g.\n\n```\n$ snappiti comiple [code] -s\n$ snappiti compile [code] --hide-style\n```\n\n#Examples\n\n## Simple cases (with `--hide-style` flag)\n\n### example 1 - named objects\n\n```\n  Window#win\n```\n\nbecomes\n\n```\n  var win = Ti.UI.createWindow(styles[\'#win\'])\n```\n\n### example 2 - with children\n\n```\nWindow#win>View#container>Label.white#label+Button.green\n```\n\nbecomes\n\n```\n  var win = Ti.UI.createWindow(styles[\'#win\'])\n  var container = Ti.UI.createView(styles[\'#container\'])\n  win.add(container)\n  var label = Ti.UI.createLabel(_.defaults(styles[\'#label\'],styles[\'.white\']))\n  container.add(label)\n  container.add(Ti.UI.createButton(_.defaults({},styles[\'.green\']))\n```\n\n### example 3 - iterations\n\n```\n  View#container>View#num$.button*8\n```\n\nbecomes\n\n```\n  var container = Ti.UI.createView(styles[\'#container\'])\n  var num1 = Ti.UI.createView(_.defaults(styles[\'#num1\'],styles[\'.button\']))\n  container.add(num1)\n  var num2 = Ti.UI.createView(_.defaults(styles[\'#num2\'],styles[\'.button\']))\n  container.add(num2)\n  var num3 = Ti.UI.createView(_.defaults(styles[\'#num3\'],styles[\'.button\']))\n  container.add(num3)\n  var num4 = Ti.UI.createView(_.defaults(styles[\'#num4\'],styles[\'.button\']))\n  container.add(num4)\n  var num5 = Ti.UI.createView(_.defaults(styles[\'#num5\'],styles[\'.button\']))\n  container.add(num5)\n  var num6 = Ti.UI.createView(_.defaults(styles[\'#num6\'],styles[\'.button\']))\n  container.add(num6)\n  var num7 = Ti.UI.createView(_.defaults(styles[\'#num7\'],styles[\'.button\']))\n  container.add(num7)\n  var num8 = Ti.UI.createView(_.defaults(styles[\'#num8\'],styles[\'.button\']))\n  container.add(num8)\n```\n\n## Better cases (without the `--hide-styling` flag)\n\n### Example using wrapping snippets\n\nsee the `snippets.json` file\n\n```\n  module#MainWindow>Window#win>(View#top.white>Label#label)+(View#bottom.green>Button#exit)\n```\n\nbecomes\n\n```\n\n/******     STYLES     *****/\n\nvar styles = {\n  \'#MainWindow\': {\n    \n  },\n  \'#bottom\': {\n    \n  },\n  \'#exit\': {\n    \n  },\n  \'#label\': {\n    \n  },\n  \'#top\': {\n    \n  },\n  \'#win\': {\n    \n  },\n  \'.green\': {\n    \n  },\n  \'.white\': {\n    \n  }\n};\n\n/******      VIEWS     *****/\n\nvar _ = require(\'/lib/underscore\');\n\nfunction MainWindow(o){\n  var win = Ti.UI.createWindow(styles[\'#win\'])\n  var top = Ti.UI.createView(_.defaults(styles[\'#top\'],styles[\'.white\']))\n  win.add(top)\n  var label = Ti.UI.createLabel(styles[\'#label\'])\n  top.add(label)\n  var bottom = Ti.UI.createView(_.defaults(styles[\'#bottom\'],styles[\'.green\']))\n  win.add(bottom)\n  var exit = Ti.UI.createButton(styles[\'#exit\'])\n  bottom.add(exit)\n\n}\n\nmodule.exports = MainWindow\n\n```\n\n### Example using wrapping snippets and unnamed parent view\n\n```\n  module#MainWindow>Window#win>(View.white>Label#label)+(View.green>Button#exit)\n```\n\n\nbecomes\n\n```\n/******     STYLES     *****/\n\nvar styles = {\n  \'#MainWindow\': {\n    \n  },\n  \'#exit\': {\n    \n  },\n  \'#label\': {\n    \n  },\n  \'#win\': {\n    \n  },\n  \'.green\': {\n    \n  },\n  \'.white\': {\n    \n  }\n};\n\n/******      VIEWS     *****/\n\nvar _ = require(\'/lib/underscore\');\n\nfunction MainWindow(o){\n  var win = Ti.UI.createWindow(styles[\'#win\'])\n  var _view8 = Ti.UI.createView(_.defaults(styles[\'#_view8\'],styles[\'.white\']))\n  win.add(_view8)\n  var label = Ti.UI.createLabel(styles[\'#label\'])\n  _view8.add(label)\n  var _view16 = Ti.UI.createView(_.defaults(styles[\'#_view16\'],styles[\'.green\']))\n  win.add(_view16)\n  var exit = Ti.UI.createButton(styles[\'#exit\'])\n  _view16.add(exit)\n\n}\n\nmodule.exports = MainWindow\n\n```\n\n# Editor Plugins\n\nHopefully this list will continue to be updated\n\n * **VIM** - [SnappiTi.vim](http://github.com/dbankier/SnappiTi.vim)\n\n\n\n',
+67 silly publish   readmeFilename: 'README.md',
+67 silly publish   _id: 'SnappiTi@0.0.1',
+67 silly publish   dist: { shasum: 'ca17d1a5b92ef9f36d4e970390827e12dc23c4e3' } }
+68 verbose url raw SnappiTi
+69 verbose url resolving [ 'https://registry.npmjs.org/', './SnappiTi' ]
+70 verbose url resolved https://registry.npmjs.org/SnappiTi
+71 info trying registry request attempt 1 at 21:56:23
+72 http PUT https://registry.npmjs.org/SnappiTi
+73 http 403 https://registry.npmjs.org/SnappiTi
+74 error publish Failed PUT response 403
+75 error Error: forbidden New packages must have all-lowercase names: SnappiTi
+75 error     at RegClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:259:14)
+75 error     at Request.init.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/main.js:120:22)
+75 error     at Request.EventEmitter.emit (events.js:99:17)
+75 error     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/main.js:648:16)
+75 error     at Request.EventEmitter.emit (events.js:126:20)
+75 error     at IncomingMessage.Request.start.self.req.self.httpModule.request.buffer (/usr/local/lib/node_modules/npm/node_modules/request/main.js:610:14)
+75 error     at IncomingMessage.EventEmitter.emit (events.js:126:20)
+75 error     at IncomingMessage._emitEnd (http.js:366:10)
+75 error     at HTTPParser.parserOnMessageComplete [as onMessageComplete] (http.js:149:23)
+75 error     at CleartextStream.socketOnData [as ondata] (http.js:1485:20)
+76 error If you need help, you may report this log at:
+76 error     <http://github.com/isaacs/npm/issues>
+76 error or email it to:
+76 error     <npm-@googlegroups.com>
+77 error System Darwin 12.3.0
+78 error command "node" "/usr/local/bin/npm" "publish" "."
+79 error cwd /Users/david/node-projects/SnappiTi
+80 error node -v v0.8.22
+81 error npm -v 1.1.71
+82 verbose exit [ 1, true ]
