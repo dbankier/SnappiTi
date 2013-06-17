@@ -33,6 +33,8 @@ object =
     {return [{object: word, classes:classes1}]}
   / word:word
     {return [{object: word}]}
+  / "(" parent_object:parent_object ")"
+    {return parent_object}
 
 multiplied_object = 
   object:object "*" i:integer

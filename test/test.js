@@ -79,3 +79,11 @@ describe("with children", function() {
     assert.deepEqual(SnappiTi.parse("View*2>ImageView"), [{object:"View", children:[{object:"ImageView"}]},{object:"View", children:[{object:"ImageView"}]}]);
   });
 });
+
+describe("support parentheses", function() {
+  it("parse parentheses expression", function() {
+    assert.deepEqual(SnappiTi.parse("Window>(View>ImageView)+(View#footer>Button)"),[
+       {object:"Window", children: [ {object:"View", children: [{object:"ImageView"}]
+         },{object:"View",id:"footer",classes:[],children:[{object:"Button"}]}]}]);
+  });
+});
