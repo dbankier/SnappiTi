@@ -146,4 +146,65 @@ module.exports = MainWindow
 
 ```
 
+### Example using wrapping snippets and unnamed parent view
+
+```
+  module#MainWindow>Window#win>(View.white>Label#label)+(View.green>Button#exit)
+```
+
+
+becomes
+
+```
+/******     STYLES     *****/
+
+var styles = {
+  '#MainWindow': {
+    
+  },
+  '#exit': {
+    
+  },
+  '#label': {
+    
+  },
+  '#win': {
+    
+  },
+  '.green': {
+    
+  },
+  '.white': {
+    
+  }
+};
+
+/******      VIEWS     *****/
+
+var _ = require('/lib/underscore');
+
+function MainWindow(o){
+  var win = Ti.UI.createWindow(styles['#win'])
+  var _view8 = Ti.UI.createView(_.defaults(styles['#_view8'],styles['.white']))
+  win.add(_view8)
+  var label = Ti.UI.createLabel(styles['#label'])
+  _view8.add(label)
+  var _view16 = Ti.UI.createView(_.defaults(styles['#_view16'],styles['.green']))
+  win.add(_view16)
+  var exit = Ti.UI.createButton(styles['#exit'])
+  _view16.add(exit)
+
+}
+
+module.exports = MainWindow
+
+```
+
+# Editor Plugins
+
+Hopefully this list will continue to be updated
+
+ * **VIM** - [SnappiTi.vim](http://github.com/dbankier/SnappiTi.vim)
+
+
 
