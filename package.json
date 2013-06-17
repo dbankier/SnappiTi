@@ -1,15 +1,14 @@
 {
   "name": "SnappiTi",
   "version": "0.0.1",
-  "description": "Zen Style Coding for Titanium",
+  "description": "Emmet/Zen Style Coding for Titanium",
   "main": "index.js",
   "dependencies": {
-    "pegjs": "~0.7.0",
-    "jasmine-node": "~1.8.1"
+    "commander": "~1.2.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "jasmine-node spec/test.js"
+    "test": "mocha"
   },
   "repository": "",
   "keywords": [
@@ -17,6 +16,7 @@
     "Zen",
     "Coding"
   ],
+  "bin": "bin/snappiti",
   "author": "David Bankier",
   "license": "MIT"
 }

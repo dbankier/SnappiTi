@@ -1,9 +1,7 @@
-var PEG = require('pegjs');
 var fs = require('fs');
 var snippets = require("./snippets.json");
 
-var data = fs.readFileSync('snappiti.peg', 'utf-8');
-var parse = PEG.buildParser(data).parse;
+var parse = require('./parser').parse;
 
 
 exports.parse = function(string) {
