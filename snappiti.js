@@ -3,6 +3,8 @@ var snippets = require("./snippets.json");
 
 var parse = require('./parser').parse;
 
+var indent = "  ";
+
 
 exports.parse = function(string) {
   return parse(string);
@@ -27,25 +29,33 @@ function buildStart(name) {
 }
 
 function buildObject(o, buffer, parent) {
-  if (snippets[o.object]) {
-    return buffer.push(snippets[o.object].replace(/\{\{id\}\}/g,o.id||""));
+  if (snippets[o.object]) { //wrapping snippets
+    var snippet_parts = snippets[o.object].replace(/\{\{id\}\}/g,o.id||"").split("$0");
+    buffer.push(snippet_parts[0]);
+    if (o.children) {
+      o.children.forEach(function(child) {
+        buildObject(child, buffer);
+      });
+    }
+    buffer.push(snippet_parts[1]);
+    return;
   }
   var start = buildStart(o.object);
   if (o.id) {
-    buffer.push("var " + o.id + " = " + start );
+    buffer.push(indent  + "var " + o.id + " = " + start );
     if (o.classes && o.classes.length > 0) {
-      buffer.push("_.default(styles['#"+o.id+"']," + o.classes.map(function(c) { return "styles['."+c+"']";}).join(","));
+      buffer.push("_.defaults(styles['#"+o.id+"']," + o.classes.map(function(c) { return "styles['."+c+"']";}).join(","));
     } else {
       buffer.push("styles['#"+o.id+"']");
     }
     buffer.push(")\n");
     if (parent) {
-      buffer.push(parent + ".add("+o.id+")\n");
+      buffer.push(indent + parent + ".add("+o.id+")\n");
     }
   } else if (parent) {
-    buffer.push(parent+ ".add("+start);
+    buffer.push(indent + parent+ ".add("+start);
     if (o.classes && o.classes.length > 0) {
-      buffer.push("_.default({}," + o.classes.map(function(c) { return "styles['."+c+"']";}).join(","));
+      buffer.push("_.defaults({}," + o.classes.map(function(c) { return "styles['."+c+"']";}).join(","));
     }
     buffer.push("))\n");
   }
@@ -55,10 +65,38 @@ function buildObject(o, buffer, parent) {
     });
   }
 }
-exports.generate = function(string) {
+
+
+function getClassesAndIds(o) {
+  var ret = [];
+  o.id && ret.push("#"+o.id);
+  if (o.classes && o.classes.length > 0) {
+    ret = ret.concat(o.classes.map(function(c) { return "." + c}));
+  }
+  if (o.children) {
+    o.children.forEach(function(c) {
+      ret = ret.concat(getClassesAndIds(c));
+    });
+  }
+  return ret;
+}
+
+exports.generate = function(string, hideStyle) {
   var buffer = [];
   var objects = parse(string);
+  if (!hideStyle) {
+    buffer.push("\n" + "/******     STYLES     *****/\n\n"+ "var styles = {\n");
+    var styles = [];
+    objects.forEach(function(o) {
+      styles = styles.concat(getClassesAndIds(o));
+    });
+    buffer.push(styles.sort().map(function(x) { 
+      return indent +  "'" + x + "': {\n"+ indent + indent + "\n" + indent + "}";}).join(",\n"));
+    buffer.push("\n};\n");
+  }
+
   objects.forEach(function(o) {
+    buffer.push("\n" +  "/******      VIEWS     *****/\n\n");
     buildObject(o, buffer);
   });
 

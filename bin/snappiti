@@ -1,8 +1,24 @@
 #!/usr/bin/env node
+var program  = require('commander'),
+    pkginfo  = require('pkginfo')
+    SnappiTi = require("../snappiti");
 
-var SnappiTi = require("../snappiti");
-if (process.argv.length !== 3) {
-  console.log("snappity [input_string]");
-} else {
-  console.log(SnappiTi.generate(process.argv[2]));
+pkginfo(module, 'name', 'version');
+
+program
+  .version(module.exports.version, '-v, --version')
+  .option('-s, --hide-style', 'hide style generation')
+  .description('SnappiTi ')
+  .usage('COMMAND [OPTIONS]');
+
+program.command('compile [content]')
+  .description('generatate titanium javascript'.grey)
+  .action(function(env) {
+     console.log(SnappiTi.generate(env, program.hideStyle));
+  });
+
+program.parse(process.argv);
+
+if (program.args.length === 0 || typeof program.args[program.args.length -1] === 'string'){
+  program.help();
 }

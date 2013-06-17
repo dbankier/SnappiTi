@@ -1,4 +1,3 @@
 {
-  "module":"var _ = require('/lib/underscore'), styles= require('/ui/{{id}}_style');\n\nfunction {{id}}(o){\n\n}\n\nmodule.exports = {{id}}",
-  "style": "var _ = require('/lib/underscore')\n\nstyle={}; module.exports = style;\n"
+  "module":"var _ = require('/lib/underscore');\n\nfunction {{id}}(o){\n$0\n}\n\nmodule.exports = {{id}}"
 }

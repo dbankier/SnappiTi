@@ -4,7 +4,8 @@
   "description": "Emmet/Zen Style Coding for Titanium",
   "main": "index.js",
   "dependencies": {
-    "commander": "~1.2.0"
+    "commander": "~1.2.0",
+    "pkginfo": "~0.3.0"
   },
   "devDependencies": {},
   "scripts": {
@@ -12,6 +13,7 @@
   },
   "repository": "",
   "keywords": [
+    "Appcelerator",
     "Titanium",
     "Zen",
     "Coding"
