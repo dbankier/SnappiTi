@@ -1,0 +1,8 @@
+#!/usr/bin/env node
+
+var SnappiTi = require("../snappiti");
+if (process.argv.length !== 3) {
+  console.log("snappity [input_string]");
+} else {
+  console.log(SnappiTi.generate(process.argv[2]));
+}
