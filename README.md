@@ -185,11 +185,11 @@ var _ = require('/lib/underscore');
 
 function MainWindow(o){
   var win = Ti.UI.createWindow(styles['#win'])
-  var _view8 = Ti.UI.createView(_.defaults(styles['#_view8'],styles['.white']))
+  var _view8 = Ti.UI.createView(_.defaults({},styles['.white']))
   win.add(_view8)
   var label = Ti.UI.createLabel(styles['#label'])
   _view8.add(label)
-  var _view16 = Ti.UI.createView(_.defaults(styles['#_view16'],styles['.green']))
+  var _view16 = Ti.UI.createView(_.defaults({},styles['.green']))
   win.add(_view16)
   var exit = Ti.UI.createButton(styles['#exit'])
   _view16.add(exit)

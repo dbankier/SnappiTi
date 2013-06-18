@@ -41,14 +41,23 @@ function buildObject(o, buffer, parent) {
     return;
   }
   var start = buildStart(o.object);
-  if (o.id || o.children) {
-    o.id = o.id || "_view" + buffer.length;
+  if (o.id) {
     buffer.push(indent  + "var " + o.id + " = " + start );
     if (o.classes && o.classes.length > 0) {
       buffer.push("_.defaults(styles['#"+o.id+"']," + o.classes.map(function(c) { return "styles['."+c+"']";}).join(",") + ")");
     } else {
       buffer.push("styles['#"+o.id+"']");
     }
+    buffer.push(")\n");
+    if (parent) {
+      buffer.push(indent + parent + ".add("+o.id+")\n");
+    }
+  } else if (o.children) {
+    o.id = "_view" + buffer.length;
+    buffer.push(indent  + "var " + o.id + " = " + start );
+    if (o.classes && o.classes.length > 0) {
+      buffer.push("_.defaults({}," + o.classes.map(function(c) { return "styles['."+c+"']";}).join(",") + ")");
+    } 
     buffer.push(")\n");
     if (parent) {
       buffer.push(indent + parent + ".add("+o.id+")\n");
