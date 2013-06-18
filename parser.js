@@ -42,8 +42,10 @@ module.exports = (function(){
         "integer": parse_integer,
         "id": parse_id,
         "class": parse_class,
+        "querry": parse_querry,
         "plussed_object": parse_plussed_object,
         "object": parse_object,
+        "querried_object": parse_querried_object,
         "multiplied_object": parse_multiplied_object,
         "added_object": parse_added_object,
         "parent_object": parse_parent_object,
@@ -317,6 +319,42 @@ module.exports = (function(){
         return result0;
       }
       
+      function parse_querry() {
+        var result0, result1;
+        var pos0, pos1;
+        
+        pos0 = pos;
+        pos1 = pos;
+        if (input.charCodeAt(pos) === 63) {
+          result0 = "?";
+          pos++;
+        } else {
+          result0 = null;
+          if (reportFailures === 0) {
+            matchFailed("\"?\"");
+          }
+        }
+        if (result0 !== null) {
+          result1 = parse_word();
+          if (result1 !== null) {
+            result0 = [result0, result1];
+          } else {
+            result0 = null;
+            pos = pos1;
+          }
+        } else {
+          result0 = null;
+          pos = pos1;
+        }
+        if (result0 !== null) {
+          result0 = (function(offset, word) {return word})(pos0, result0[1]);
+        }
+        if (result0 === null) {
+          pos = pos0;
+        }
+        return result0;
+      }
+      
       function parse_plussed_object() {
         var result0, result1;
         var pos0, pos1;
@@ -493,13 +531,53 @@ module.exports = (function(){
         return result0;
       }
       
-      function parse_multiplied_object() {
+      function parse_querried_object() {
         var result0, result1, result2;
         var pos0, pos1;
         
         pos0 = pos;
         pos1 = pos;
         result0 = parse_object();
+        if (result0 !== null) {
+          result2 = parse_querry();
+          if (result2 !== null) {
+            result1 = [];
+            while (result2 !== null) {
+              result1.push(result2);
+              result2 = parse_querry();
+            }
+          } else {
+            result1 = null;
+          }
+          if (result1 !== null) {
+            result0 = [result0, result1];
+          } else {
+            result0 = null;
+            pos = pos1;
+          }
+        } else {
+          result0 = null;
+          pos = pos1;
+        }
+        if (result0 !== null) {
+          result0 = (function(offset, object, querries) { object[0].querries = querries; return object; })(pos0, result0[0], result0[1]);
+        }
+        if (result0 === null) {
+          pos = pos0;
+        }
+        if (result0 === null) {
+          result0 = parse_object();
+        }
+        return result0;
+      }
+      
+      function parse_multiplied_object() {
+        var result0, result1, result2;
+        var pos0, pos1;
+        
+        pos0 = pos;
+        pos1 = pos;
+        result0 = parse_querried_object();
         if (result0 !== null) {
           if (input.charCodeAt(pos) === 42) {
             result1 = "*";
@@ -552,7 +630,7 @@ module.exports = (function(){
           pos = pos0;
         }
         if (result0 === null) {
-          result0 = parse_object();
+          result0 = parse_querried_object();
         }
         return result0;
       }

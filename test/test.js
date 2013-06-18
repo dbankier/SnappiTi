@@ -87,3 +87,8 @@ describe("support parentheses", function() {
          },{object:"View",id:"footer",classes:[],children:[{object:"Button"}]}]}]);
   });
 });
+
+describe("supports querries", function() {
+  it("supports single query", function() {
+    assert.deepEqual(SnappiTi.parse("View#id?handheld?android"),[{object:"View", id:"id", classes: [], querries:["handheld","android"]}]);  });
+});

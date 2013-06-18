@@ -20,6 +20,10 @@ class =
   "." word:extendedword
   {return word}
 
+querry = 
+  "?" word:word
+  {return word}
+
 plussed_object = 
   "+" object:parent_object
     {return object}
@@ -36,8 +40,13 @@ object =
   / "(" parent_object:parent_object ")"
     {return parent_object}
 
+querried_object =
+  object:object querries:querry+
+    { object[0].querries = querries; return object; }
+  / object
+
 multiplied_object = 
-  object:object "*" i:integer
+  object:querried_object "*" i:integer
     { var ret = [];
       for (var a = 0; a < i; a++) {
         var current = {object: object[0].object};
@@ -58,7 +67,7 @@ multiplied_object =
       };  
       return ret
     }
-  / object 
+  / querried_object 
 
 
 added_object = 

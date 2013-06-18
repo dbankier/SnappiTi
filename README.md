@@ -82,6 +82,34 @@ becomes
   container.add(num8)
 ```
 
+### Example with device and platform queries
+
+The `?` character has been added for this purpose.
+
+You will need this library for detection:
+[gist](https://gist.github.com/dbankier/5810192)
+
+```
+Window#win>(View#android?android>Button.blue)+(View#ios?ios?tablet>Button.red)
+```
+
+becomes
+
+```
+  var win = Ti.UI.createWindow(styles['#win'])
+  if (Detect.android) {
+    var android = Ti.UI.createView(styles['#android'])
+    win.add(android)
+    android.add(Ti.UI.createButton(_.defaults({},styles['.blue'])))
+  }
+  if (Detect.ios && Detect.tablet) {
+    var ios = Ti.UI.createView(styles['#ios'])
+    win.add(ios)
+    ios.add(Ti.UI.createButton(_.defaults({},styles['.red'])))
+  }
+```
+
+
 ## Better cases (without the `--hide-styling` flag)
 
 ### Example using wrapping snippets

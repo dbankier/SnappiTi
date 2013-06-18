@@ -40,6 +40,11 @@ function buildObject(o, buffer, parent) {
     buffer.push(snippet_parts[1]);
     return;
   }
+  var old_indent = indent;
+  if (o.querries) {
+    buffer.push(indent + "if (" + o.querries.map(function(q) { return "Detect." + q;}).join(" && ") + ") {\n");
+    indent = indent + indent;
+  }
   var start = buildStart(o.object);
   if (o.id) {
     buffer.push(indent  + "var " + o.id + " = " + start );
@@ -67,12 +72,16 @@ function buildObject(o, buffer, parent) {
     if (o.classes && o.classes.length > 0) {
       buffer.push("_.defaults({}," + o.classes.map(function(c) { return "styles['."+c+"']";}).join(",") + ")");
     }
-    buffer.push(")\n");
+    buffer.push("))\n");
   }
   if (o.children) {
     o.children.forEach(function(child) {
       buildObject(child, buffer, o.id);
     });
+  }
+  if (o.querries) {
+    indent = old_indent;
+    buffer.push(indent + "}\n");
   }
 }
 

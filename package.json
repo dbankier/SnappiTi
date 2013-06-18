@@ -1,6 +1,6 @@
 {
   "name": "snappiti",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Emmet/Zen Style Coding for Titanium",
   "main": "index.js",
   "dependencies": {
