@@ -92,3 +92,17 @@ describe("supports querries", function() {
   it("supports single query", function() {
     assert.deepEqual(SnappiTi.parse("View#id?handheld?android"),[{object:"View", id:"id", classes: [], querries:["handheld","android"]}]);  });
 });
+
+describe("supports attributes", function() {
+  it("supports simple text attribute", function() {
+    assert.deepEqual(SnappiTi.parse("View[text='one']"),[{object:"View", attributes: {text: 'one'}}]);  
+  });
+  it("supports simple integer attribute", function() {
+    assert.deepEqual(SnappiTi.parse("View[text=0]"),[{object:"View", attributes: {text: '0'}}]);  
+  });
+  it("supports mutiple attribute", function() {
+    assert.deepEqual(SnappiTi.parse("View#id?handheld?android[title='hello' borderRadius=0]"),[{object:"View", id:"id", classes: [], querries:["handheld","android"], attributes: {title: 'hello', borderRadius: 0}}]);  
+  });
+
+});
+

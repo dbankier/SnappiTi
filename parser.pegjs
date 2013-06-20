@@ -24,11 +24,31 @@ querry =
   "?" word:word
   {return word}
 
+quoted=
+  '"' content:[^"]+ '"'
+  {return content.join(""); }
+  / "'" content:[^']+ "'"
+  {return content.join(""); }
+  / integer
+  / extendedword
+
+attribute =
+  key:quoted "=" value:quoted
+  {return [key, value];}
+
+spaced_attribute = 
+  " " a:attribute
+  {return a;}
+
+attributes = 
+  "[" first:attribute other:spaced_attribute* "]"
+  { var a = {}; a[first[0]] = first[1]; 
+    other.forEach(function(arr) { a[arr[0]] = arr[1] }); return a }
+
 plussed_object = 
   "+" object:parent_object
     {return object}
   / parent_object
-
 
 object =
   word:word classes1:class* id:id classes2:class*
@@ -40,13 +60,18 @@ object =
   / "(" parent_object:parent_object ")"
     {return parent_object}
 
+attributed_object = 
+  object:querried_object attrs:attributes
+    { object[0].attributes = attrs; return object; }
+  /querried_object
+
 querried_object =
   object:object querries:querry+
     { object[0].querries = querries; return object; }
   / object
 
 multiplied_object = 
-  object:querried_object "*" i:integer
+  object:attributed_object "*" i:integer
     { var ret = [];
       for (var a = 0; a < i; a++) {
         var current = {object: object[0].object};
@@ -67,7 +92,7 @@ multiplied_object =
       };  
       return ret
     }
-  / querried_object 
+  / attributed_object 
 
 
 added_object = 

@@ -25,7 +25,7 @@ $ snappiti compile [code] --hide-style
 
 ## Simple cases (with `--hide-style` flag)
 
-### example 1 - named objects
+### named objects
 
 ```
   Window#win
@@ -37,7 +37,7 @@ becomes
   var win = Ti.UI.createWindow(styles['#win'])
 ```
 
-### example 2 - with children
+### with children, styles and ids
 
 ```
 Window#win>View#container>Label.white#label+Button.green
@@ -54,7 +54,22 @@ becomes
   container.add(Ti.UI.createButton(_.defaults({},styles['.green']))
 ```
 
-### example 3 - iterations
+### attributes
+
+```
+Window#win.white>Label#title[text="Hello World!"]+View.black[borderRadius=5 backgroundColor="black"]
+```
+
+becomes
+
+```
+  var win = Ti.UI.createWindow(_.defaults(styles['#win'],styles['.white']));
+  var title = Ti.UI.createLabel(_.defaults({"text":"Hello World!"},styles['#title']));
+  win.add(title);
+  win.add(Ti.UI.createView(_.defaults({"borderRadius":5,"backgroundColor":"black"},styles['.black'])));
+```
+
+### iterations
 
 ```
   View#container>View#num$.button*8
@@ -82,7 +97,7 @@ becomes
   container.add(num8)
 ```
 
-### Example with device and platform queries
+### device and platform queries
 
 The `?` character has been added for this purpose.
 
@@ -107,39 +122,28 @@ becomes
     win.add(ios)
     ios.add(Ti.UI.createButton(_.defaults({},styles['.red'])))
   }
+
 ```
 
 
 ## Better cases (without the `--hide-styling` flag)
 
-### Example using wrapping snippets
-
-see the `snippets.json` file
+### style object generation
 
 ```
-  module#MainWindow>Window#win>(View#top.white>Label#label)+(View#bottom.green>Button#exit)
+Window#win>View#container>Label.white#label+Button.green
 ```
 
 becomes
 
 ```
-
 /******     STYLES     *****/
 
 var styles = {
-  '#MainWindow': {
-    
-  },
-  '#bottom': {
-    
-  },
-  '#exit': {
+  '#container': {
     
   },
   '#label': {
-    
-  },
-  '#top': {
     
   },
   '#win': {
@@ -155,26 +159,18 @@ var styles = {
 
 /******      VIEWS     *****/
 
-var _ = require('/lib/underscore');
-
-function MainWindow(o){
   var win = Ti.UI.createWindow(styles['#win'])
-  var top = Ti.UI.createView(_.defaults(styles['#top'],styles['.white']))
-  win.add(top)
-  var label = Ti.UI.createLabel(styles['#label'])
-  top.add(label)
-  var bottom = Ti.UI.createView(_.defaults(styles['#bottom'],styles['.green']))
-  win.add(bottom)
-  var exit = Ti.UI.createButton(styles['#exit'])
-  bottom.add(exit)
-
-}
-
-module.exports = MainWindow
+  var container = Ti.UI.createView(styles['#container'])
+  win.add(container)
+  var label = Ti.UI.createLabel(_.defaults(styles['#label'],styles['.white']))
+  container.add(label)
+  container.add(Ti.UI.createButton(_.defaults({},styles['.green'])))
 
 ```
 
-### Example using wrapping snippets and unnamed parent view
+### using wrapping snippets
+
+see the `snippets.json` file for `module` definition
 
 ```
   module#MainWindow>Window#win>(View.white>Label#label)+(View.green>Button#exit)
@@ -187,9 +183,6 @@ becomes
 /******     STYLES     *****/
 
 var styles = {
-  '#MainWindow': {
-    
-  },
   '#exit': {
     
   },
@@ -209,23 +202,22 @@ var styles = {
 
 /******      VIEWS     *****/
 
-var _ = require('/lib/underscore');
+var _ = require('/lib/underscore'), Detect = require('/lib/detect');
 
 function MainWindow(o){
   var win = Ti.UI.createWindow(styles['#win'])
-  var _view8 = Ti.UI.createView(_.defaults({},styles['.white']))
-  win.add(_view8)
+  var _view6 = Ti.UI.createView(_.defaults({},styles['.white']))
+  win.add(_view6)
   var label = Ti.UI.createLabel(styles['#label'])
-  _view8.add(label)
-  var _view16 = Ti.UI.createView(_.defaults({},styles['.green']))
-  win.add(_view16)
+  _view6.add(label)
+  var _view10 = Ti.UI.createView(_.defaults({},styles['.green']))
+  win.add(_view10)
   var exit = Ti.UI.createButton(styles['#exit'])
-  _view16.add(exit)
+  _view10.add(exit)
 
 }
 
 module.exports = MainWindow
-
 ```
 
 # Editor Plugins
@@ -233,7 +225,7 @@ module.exports = MainWindow
 Hopefully this list will continue to be updated
 
  * **VIM** - [SnappiTi.vim](http://github.com/dbankier/SnappiTi.vim)
- * **Sublime Text 2 *** - [SnappiTi.sublime](http://github.com/dbankier/SnappiTi.sublime)
+ * **Sublime Text 2** - [SnappiTi.sublime](http://github.com/dbankier/SnappiTi.sublime)
 
 
 

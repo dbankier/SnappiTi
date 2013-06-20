@@ -46,33 +46,29 @@ function buildObject(o, buffer, parent) {
     indent = indent + indent;
   }
   var start = buildStart(o.object);
-  if (o.id) {
-    buffer.push(indent  + "var " + o.id + " = " + start );
-    if (o.classes && o.classes.length > 0) {
-      buffer.push("_.defaults(styles['#"+o.id+"']," + o.classes.map(function(c) { return "styles['."+c+"']";}).join(",") + ")");
-    } else {
-      buffer.push("styles['#"+o.id+"']");
-    }
-    buffer.push(")\n");
-    if (parent) {
-      buffer.push(indent + parent + ".add("+o.id+")\n");
-    }
-  } else if (o.children) {
-    o.id = "_view" + buffer.length;
-    buffer.push(indent  + "var " + o.id + " = " + start );
-    if (o.classes && o.classes.length > 0) {
-      buffer.push("_.defaults({}," + o.classes.map(function(c) { return "styles['."+c+"']";}).join(",") + ")");
-    } 
-    buffer.push(")\n");
+
+  var properties = "";
+
+  if ((o.classes && o.classes.length > 0) || (o.id && o.attributes)) {
+    properties = "_.defaults(" +
+      (o.attributes ? JSON.stringify(o.attributes) + "," : (o.id ? "" : "{},") ) +
+      (o.id ? "styles['#"+o.id+"']" + (o.classes && o.classes.length > 0 ? "," : "") : "") +
+      o.classes.map(function(c) { return "styles['."+c+"']";}).join(",") + 
+      ")";
+  } else if (o.id) {
+    properties = "styles['#"+o.id+"']";
+  } else if (o.attributes) {
+    properties = JSON.stringify(o.attributes);
+  }
+
+  if (o.id || o.children) {
+    o.id = o.id || "_view" + buffer.length;
+    buffer.push(indent  + "var " + o.id + " = " + start + properties + ")\n" );
     if (parent) {
       buffer.push(indent + parent + ".add("+o.id+")\n");
     }
   } else if (parent) {
-    buffer.push(indent + parent+ ".add("+start);
-    if (o.classes && o.classes.length > 0) {
-      buffer.push("_.defaults({}," + o.classes.map(function(c) { return "styles['."+c+"']";}).join(",") + ")");
-    }
-    buffer.push("))\n");
+    buffer.push(indent + parent+ ".add("+start + properties + "))\n");
   }
   if (o.children) {
     o.children.forEach(function(child) {
@@ -88,9 +84,9 @@ function buildObject(o, buffer, parent) {
 
 function getClassesAndIds(o) {
   var ret = [];
-  o.id && ret.push("#"+o.id);
+  o.id && !snippets[o.object] && ret.push("#"+o.id);
   if (o.classes && o.classes.length > 0) {
-    ret = ret.concat(o.classes.map(function(c) { return "." + c}));
+    ret = ret.concat(o.classes.map(function(c) { return "." + c;}));
   }
   if (o.children) {
     o.children.forEach(function(c) {
